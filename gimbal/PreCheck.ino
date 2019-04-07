@@ -8,6 +8,8 @@ const int relay4 = 9;
 
 const int vcc = 10;
 
+const int ext_t = 1000;
+
 void setup()
 {
     Serial.begin(9600);
@@ -57,25 +59,25 @@ void loop()
     startactuators();
 // Tilt Left
     la1_retract();
-    delay(1000);
+    delay(ext_t);
     la1_extend();
-    delay(1000);
+    delay(ext_t);
 // Tilt right
     la1_extend();
-    delay(1000);
+    delay(ext_t);
     la1_retract();
-    delay(1000);
+    delay(ext_t);
 // Tilt Up
     la2_extend();
-    delay(1000);
+    delay(ext_t);
     la2_retract();
-    delay(1000);
+    delay(ext_t);
 // Tilt Down
     la2_retract();
-    delay(1000);
+    delay(ext_t);
     la2_extend();
-    delay(1000);
+    delay(ext_t);
 
     stop actuators();
-    delay(1000);
+    delay(ext_t);
 }
