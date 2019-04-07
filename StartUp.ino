@@ -1,9 +1,9 @@
-/***************
+/************************************************************
 File: StartUp.ino
 Description: To start up the linear actuators-
 maximizes their stroke length and then retracts it completely. 
 Then sets it at 25mm for both actuators.
-****************/
+*************************************************************/
 
 const int relay1 = 7;
 const int relay2 = 6;
