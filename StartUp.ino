@@ -11,9 +11,7 @@ void setup()
   pinMode(relay1, OUTPUT);
   pinMode(relay2, OUTPUT);
   pinMode(vcc, OUTPUT);
-  retract(); 
-  delay(2000); 
-  middle(); 
+ 
 }
 
 void extend1(){
@@ -58,17 +56,19 @@ void loop() {
   //If x-axis then change only one actuator and use its corresponding relays
   //Else use the other relays
 
-
-
-}
-
-  
-
-  
-
-
-  
-  
-  
+ retract(); 
+  delay(2000); 
+  middle(); 
 
 }
+
+  
+
+  
+
+
+  
+  
+  
+
+
