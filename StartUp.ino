@@ -37,6 +37,9 @@ void stopactuator(){
   digitalWrite(vcc, LOW);
   
 }
+void startactuator(){
+    digitalWrite(vcc, HIGH); 
+}
 
 void middle(){
   extend1();
@@ -55,10 +58,13 @@ void loop() {
   //x-axis, y-axis, or z-axis
   //If x-axis then change only one actuator and use its corresponding relays
   //Else use the other relays
-
- retract(); 
+    
+  startactuator();
+  retract1(); 
+  retract2(); 
   delay(2000); 
   middle(); 
+  stopactuator(); 
 
 }
 
