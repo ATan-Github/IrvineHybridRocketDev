@@ -1,15 +1,20 @@
+//This is the preflight procedure in which the gimbal will go through startup and precheck.
+
+//Linear Actuator 1
 const int relay1 = 6;
 const int relay2 = 7;
+//Linear Actuator 2
 const int relay3 = 8;
 const int relay4 = 9;
+//relay board
 const int vcc = 10;
 
-const int precheck_toggle = 2;
+const int precheck_toggle = 2; // ignore for now
 const int ext_t = 1000;
 
 
 struct Extend
-{
+{//Sets the pins for extending a linear actuator
   Extend(const int& relay1, const int& relay2):
   r1(relay1), r2(relay2)
   {
@@ -24,7 +29,7 @@ struct Extend
 };
 
 struct Retract
-{
+{//Sets the pins for retracting a linear actuator
   Retract(const int& relqy1, const int& relqy2):
   r1(relay1), r2(relay2)
   {
@@ -39,7 +44,7 @@ struct Retract
 };
 
 struct LA_1
-{
+{//This is the object "Linear Actuator 1" that stores position and the extend/retract functions
   LA_1(const int& relay1, const int& relay2):
   r1(relay1), r2(relay2){}
 
@@ -50,7 +55,7 @@ struct LA_1
 };
 
 struct LA_2
-{
+{//This is the object "Linear Actuator 2" that stores position and the extend/retract functions
   LA_2(const int& relay3, const int& relay4):
   r3(relay3), r4(relay4){}
 
@@ -63,13 +68,11 @@ struct LA_2
 
 void startactuators();
 void stopactuators();
-
-
 struct LA_1 la1 = {relay1, relay2};
 struct LA_2 la2 = {relay3, relay4};
 
 void setup()
-{
+{// Startup Procedure
   Serial.begin(9600);
   pinMode(vcc, OUTPUT);
   pinMode(precheck_toggle, INPUT);
@@ -85,34 +88,34 @@ void setup()
 }
 
 void stopactuators()
-{
+{// Turns off the relay board
   digitalWrite(vcc, LOW);
 }
 
 void startactuators()
-{
+{//Turns on the relay board
   digitalWrite(vcc, HIGH);
 }
 
 void loop()
 {
     startactuators();
-
+// Tilts the gimbal left
     la1.retract;
     delay(ext_t);
     la1.extend;
     delay(ext_t);
-
+// Tilts the gimbal right
     la1.extend;
     delay(ext_t);
     la1.retract;
     delay(ext_t);
-
+// Pitches the gimbal up
     la2.retract;
     delay(ext_t);
     la2.extend;
     delay(ext_t);
-
+// Pitches the gimbal down
     la2.extend;
     delay(ext_t);
     la2.retract;
