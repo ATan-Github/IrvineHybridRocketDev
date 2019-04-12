@@ -1,6 +1,6 @@
 
-#ifndef Preflight
-#define Preflight
+#ifndef Preflight_h
+#define Preflight_h
 #include <Arduino.h>
 
 class Preflight
