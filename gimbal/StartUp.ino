@@ -1,7 +1,7 @@
 /************************************************************
 File: StartUp.ino
 Description: To start up the linear actuators-
-maximizes their stroke length and then retracts it completely. 
+maximizes their stroke length and then retracts it completely.
 Then sets it at 25mm for both actuators.
 *************************************************************/
 
@@ -17,7 +17,7 @@ void setup()
   pinMode(relay1, OUTPUT);
   pinMode(relay2, OUTPUT);
   pinMode(vcc, OUTPUT);
- 
+
 }
 
 void extend1(){
@@ -41,15 +41,15 @@ void retract2(){
 
 void stopactuator(){
   digitalWrite(vcc, LOW);
-  
+
 }
 void startactuator(){
-    digitalWrite(vcc, HIGH); 
+    digitalWrite(vcc, HIGH);
 }
 
 void middle(){
   extend1();
-  delay(1000); 
+  delay(1000);
   extend2();
   delay(1000);
 }
@@ -64,23 +64,12 @@ void loop() {
   //x-axis, y-axis, or z-axis
   //If x-axis then change only one actuator and use its corresponding relays
   //Else use the other relays
-    
+
   startactuator();
-  retract1(); 
-  retract2(); 
-  delay(2000); 
-  middle(); 
-  stopactuator(); 
+  retract1();
+  retract2();
+  delay(2000);
+  middle();
+  stopactuator();
 
 }
-
-  
-
-  
-
-
-  
-  
-  
-
-
