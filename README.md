@@ -1,7 +1,7 @@
 # IrvineHybridRocketDev
 IHRD
 
-#Preflight
+# Preflight
 The preflight library consists of 
 - Preflight.cpp
 - Preflight.h
