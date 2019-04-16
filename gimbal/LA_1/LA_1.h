@@ -9,6 +9,7 @@ class LA_1
         LA_1(int r1, int r2);
         void extend(int t);
         void retract(int t);
+        void move(int t);
     private:
         int _r1;
         int _r2;

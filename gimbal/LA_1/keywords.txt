@@ -1,3 +1,4 @@
 LA_1        KEYWORD1
 extend      KEYWORD2
 retract     KEYWORD2
+move        KEYWORD2

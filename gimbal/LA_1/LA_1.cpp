@@ -24,3 +24,19 @@ void LA_1::retract(int t)
     digitalWrite(_r2, LOW);
     delay(t);
 }
+
+void LA_1::move(int t)
+{
+    if(t >= 0)
+    {
+        digitalWrite(_r1, LOW);
+        digitalWrite(_r2, HIGH);
+        delay(t);
+    }
+    else
+    {
+        digitalWrite(_r1, HIGH);
+        digitalWrite(_r2, LOW);
+        delay(-t);
+    }
+}
