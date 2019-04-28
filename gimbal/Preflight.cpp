@@ -5,13 +5,10 @@
 #include <Preflight.h>
 #include <Constants.h>
 
-    LA_1 la1 = {r1, r2};
-    LA_2 la2 = {r3, r4};
-
 Preflight::Preflight(r1, r2, r3, r4, vcc)
 {
-//    LA_1 la1 = {r1, r2};
-//    LA_2 la2 = {r3, r4};
+    LA_1 la1 = {r1, r2};
+    LA_2 la2 = {r3, r4};
     pinMode(vcc, OUTPUT);
     _r1 = r1;
     _r2 = r2;
