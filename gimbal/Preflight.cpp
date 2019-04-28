@@ -1,5 +1,7 @@
 //Preflight library .cpp
 #include <Arduino.h>
+#include <LA_1.h>
+#include <LA_2.h>
 #include <Preflight.h>
 
 int relay1, relay2, relay3, relay4;
@@ -17,56 +19,6 @@ Preflight::Preflight(int r1, int r2, int r3, int r4, int vcc)
     relay3 = _r3;
     relay4 = _r4;
 }
-
-struct Preflight::Extend
-{
-    Extend(const int& relay1, const int& relay2):
-        r1(relay1), r2(relay2)
-    {
-        pinMode(r1, OUTPUT);
-        pinMode(r2, OUTPUT);
-        digitalWrite(r1, LOW);
-        digitalWrite(r2, HIGH);
-    }
-
-    int r1, r2;
-};
-
-struct Preflight::Retract
-{
-    Retract(const int& relay1, const int&relay2):
-        r1(relay1), r2(relay2)
-    {
-        pinMode(r1, OUTPUT);
-        pinMode(r2, OUTPUT);
-        digitalWrite(r1, HIGH);
-        digitalWrite(r2, LOW);
-    }
-
-    int r1, r2;
-};
-
-struct Preflight::LA_1
-{
-    LA_1(const int& relay1, const int& relay2):
-    r1(relay1), r2(relay2){}
-
-    int r1, r2;
-    float position = -1;
-    struct Extend extend = {r1,r2};
-    struct Retract retract = {r1,r2};
-};
-
-struct Preflight::LA_2
-{
-    LA_2(const int& relay3, const int& relay4):
-    r3(relay3), r4(relay4){}
-
-    int r3, r4;
-    float position = -1;
-    struct Extend extend = {r3,r4};
-    struct Retract retract = {r3, r4};
-};
 
 void Preflight::stopactuators()
 {
