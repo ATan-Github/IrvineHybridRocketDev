@@ -37,11 +37,11 @@ struct Preflight::LA_2 la2 = {relay3, relay4};
 void Preflight::startup()
 {
     startactuators();
-    la1.retract;
-    la2.retract;
-    delay(2000);
-    la1.extend;
-    la2.extend;
+    la1.retract(2000);
+    la2.retract(2000);
+    delay(1000);
+    la1.extend(1000);
+    la2.extend(1000);
     delay(1000);
     stopactuators();
 }
@@ -50,24 +50,18 @@ void Preflight::precheck()
 {
     startactuators();
 
-    la1.retract;
+    la1.retract(1000);
     delay(1000);
-    la1.extend;
-    delay(1000);
-
-    la1.extend;
-    delay(1000);
-    la1.retract;
+    la1.extend(1000);
     delay(1000);
 
-    la2.retract;
-    delay(1000);
-    la2.extend;
+    la1.move(-1000);
     delay(1000);
 
-    la2.extend;
+    la2.move(1000);
     delay(1000);
-    la2.retract;
+
+    la2.move(-1000);
     delay(1000);
 
     stopactuators();
