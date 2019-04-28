@@ -4,20 +4,18 @@
 #include <LA_2.h>
 #include <Preflight.h>
 
-int relay1, relay2, relay3, relay4;
+
 
 Preflight::Preflight(int r1, int r2, int r3, int r4, int vcc)
 {
+    LA_1 la1 = {r1, r2};
+    LA_2 la2 = {r3, r4};
     pinMode(vcc, OUTPUT);
     _r1 = r1;
     _r2 = r2;
     _r3 = r3;
     _r4 = r4;
     _vcc = vcc;
-    relay1 = _r1;
-    relay2 = _r2;
-    relay3 = _r3;
-    relay4 = _r4;
 }
 
 void Preflight::stopactuators()
@@ -31,18 +29,17 @@ void Preflight::startactuators()
 }
 
 
-struct Preflight::LA_1 la1 = {relay1, relay2};
-struct Preflight::LA_2 la2 = {relay3, relay4};
 
 void Preflight::startup()
 {
     startactuators();
+    
     la1.retract(2000);
     la2.retract(2000);
     delay(1000);
     la1.extend(1000);
     la2.extend(1000);
-    delay(1000);
+    
     stopactuators();
 }
 
@@ -51,18 +48,24 @@ void Preflight::precheck()
     startactuators();
 
     la1.retract(1000);
-    delay(1000);
+    delay(500);
     la1.extend(1000);
-    delay(1000);
+    delay(500);
 
+    la1.move(1000);
+    delay(500);
     la1.move(-1000);
-    delay(1000);
+    delay(500);
 
     la2.move(1000);
-    delay(1000);
+    delay(500);
+    la2.move(-1000);
+    delay(500);
 
     la2.move(-1000);
-    delay(1000);
+    delay(500);
+    la2.move(1000);
+    delay(500);
 
     stopactuators();
 }
