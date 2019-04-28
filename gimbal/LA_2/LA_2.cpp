@@ -1,3 +1,8 @@
+//***************************************************
+// File: LA_2.cpp
+// Desc: Contains the functions for 1 linear actuator, 
+//       essentially the same as LA_1.cpp
+//***************************************************
 
 #include <Arduino.h>
 #include <LA_2.h>
