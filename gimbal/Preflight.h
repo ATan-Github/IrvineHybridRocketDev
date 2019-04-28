@@ -7,14 +7,10 @@ class Preflight
 {
     public:
         Preflight(int r1, int r2, int r3, int r4, int vcc);
-        struct Extend;
-        struct Retract;
-        struct LA_1;
-        struct LA_2;
-        void startactuators();
-        void stopactuators();
-        void startup();
-        void precheck();
+        void startactuators(); // temporary
+        void stopactuators(); // temporary
+        void startup(); // zeros the actuator positions
+        void precheck(); // goes through 4 simple directions
     private:
         int _r1;
         int _r2;
