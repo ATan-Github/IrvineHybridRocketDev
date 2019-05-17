@@ -1,3 +1,4 @@
+#include <math.h>
 // which analog pin to connect
 #define THERMISTORPIN A0         
 // resistance at 25 degrees C
@@ -7,6 +8,15 @@
 // how many samples to take and average, more takes longer
 // but is more 'smooth'
 #define NUMSAMPLES 5
+
+//Steinhart-Hart Equation Coefficients
+//The A Coefficient
+#define A 0.00221698
+//The B Coefficient
+#define B 0.000242425
+//The C Coefficient
+#define C 0.000000207057
+
 // The beta coefficient of the thermistor (usually 3000-4000)
 #define BCOEFFICIENT 3950
 // the value of the 'other' resistor
@@ -16,7 +26,7 @@ void setup(void) {
 }
  
 void loop(void) {
-  float reading;
+  double reading;
  
   reading = analogRead(THERMISTORPIN);
  
@@ -29,6 +39,15 @@ void loop(void) {
   Serial.print("Thermistor resistance "); 
   Serial.println(reading);
 
+  double steinhart;
+  steinhart = A + (B*log(reading)) + (C*(pow(log(reading),3)));
+  steinhart = 1.0/steinhart;
+  steinhart -= 273.15;                   //Convert to C
+  steinhart = ((9/5)*steinhart) + 32;    //Convert to F
+  Serial.print("Temperature "); 
+  Serial.print(steinhart);
+  Serial.println(" *F");
+  
 
  /* FIND A BETTER RESISTANCE TO TEMPERATURE CONVERSION FOR 100K THERMISTOR (data sheet below)
   *  
