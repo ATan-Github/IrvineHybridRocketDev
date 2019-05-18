@@ -47,6 +47,8 @@ void loop(void) {
   steinhart -= 273.15;                   //Convert to C
   Serial.print(steinhart);
   Serial.println(" *C");
+  //Error compensation of about +/- degree Celsius, temps/resistance seem to be off about 1C according to chart
+  steinhart -= steinhart - 1;
   steinhart = (1.8*steinhart) + 32;    //Convert to F
   Serial.print("Temperature "); 
   Serial.print(steinhart);
