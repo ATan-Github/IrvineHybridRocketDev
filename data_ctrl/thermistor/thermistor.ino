@@ -11,16 +11,16 @@
 
 //Steinhart-Hart Equation Coefficients
 //The A Coefficient
-#define A 0.00221698
+#define A 0.0004316052382  
 //The B Coefficient
-#define B 0.000242425
+#define B 0.0002581936673
 //The C Coefficient
-#define C 0.000000207057
+#define C -0.00000003910705935
 
 // The beta coefficient of the thermistor (usually 3000-4000)
 #define BCOEFFICIENT 3950
 // the value of the 'other' resistor
-#define SERIESRESISTOR 9960  
+#define SERIESRESISTOR 10000 
 void setup(void) {
   Serial.begin(9600);
 }
@@ -40,10 +40,14 @@ void loop(void) {
   Serial.println(reading);
 
   double steinhart;
-  steinhart = A + (B*log(reading)) + (C*(pow(log(reading),3)));
+  double part2 = B*log(reading);
+  double part3 = C*(pow(log(reading), 3));
+  steinhart = A + part2 + part3;
   steinhart = 1.0/steinhart;
   steinhart -= 273.15;                   //Convert to C
-  steinhart = ((9/5)*steinhart) + 32;    //Convert to F
+  Serial.print(steinhart);
+  Serial.println(" *C");
+  steinhart = (1.8*steinhart) + 32;    //Convert to F
   Serial.print("Temperature "); 
   Serial.print(steinhart);
   Serial.println(" *F");
